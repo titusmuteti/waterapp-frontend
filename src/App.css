@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+.bg {
+  background-image: url("/public/images/208539.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
