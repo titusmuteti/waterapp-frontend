@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import Userbar from '../components/Navbar'
 
 function Home() {
   return (
     <>
-    <Navbar/>
+    <Userbar/>
     </>
   )
 }
