@@ -4,38 +4,44 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function navbar() {
+function Userbar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home" className='mr-5 pr-5 m-0'>MAKAWASCO</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <Nav.Link href="#home" className='pr-5'>Home</Nav.Link>
+            <Nav.Link href="#pricing" className='pr-5'>About Us</Nav.Link>
+            <NavDropdown title="Customer Service" id="collasible-nav-dropdown" className='pr-5'>
+              <NavDropdown.Item href="#action/3.1">Self Service Portal</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+                Payment Methods
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Projects</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
-                Separated link
+                Careers
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Work With Us" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Careers</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Tenders
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
+          {/* <Nav>
+            <Nav.Link href="#deets">Login</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+              Signup
             </Nav.Link>
-          </Nav>
+          </Nav> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
   )
 }
 
-export default navbar
+export default Userbar

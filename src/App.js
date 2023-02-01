@@ -1,7 +1,6 @@
 import './App.css';
-import './components/navbar'
-import Signup from './components/signup';
-import Home from './pages/home';
+import Signup from './components/Signup';
+import Home from './pages/Home';
 
 function App() {
     return (
