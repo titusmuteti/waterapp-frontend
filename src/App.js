@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import WorkWithUs from './pages/WorkWithUs';
 import SelfServicePortal from './pages/SelfServicePortal';
-import Footer from './components/Footer';
 
 function App() {
     return (
