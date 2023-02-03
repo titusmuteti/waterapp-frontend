@@ -7,7 +7,7 @@ function Slides() {
     <Carousel.Item className='h-100'>
       <img
         className="d-block w-100" 
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOg9M8OGd7esbwbz7DtAe7z05YKXVkOXwnrw&usqp=CAU"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyhFpAAwbftNfTklEjjPCMOyJizgTtTin0HaAO-pnrgRJ5utX6LGRrblivOHHzbBIAIc8&usqp=CAU"
         height='600'
         alt="First slide"
       />
