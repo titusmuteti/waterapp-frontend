@@ -15,11 +15,11 @@ function Userbar() {
             <Nav.Link href="/" className='pr-5'>Home</Nav.Link>
             <Nav.Link href="/about" className='pr-5'>About Us</Nav.Link>
             <NavDropdown title="Customer Service" id="collasible-nav-dropdown" className='pr-5'>
-              <NavDropdown.Item href="#action/3.1">Self Service Portal</NavDropdown.Item>
+              <NavDropdown.Item href="/selfserviceportal">Self Service Portal</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Payment Methods
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Projects</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Report a complaint</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Careers

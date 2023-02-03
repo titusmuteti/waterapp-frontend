@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/Footer';
 import Userbar from '../components/Navbar'
 import Slides from '../components/Slides';
 
@@ -34,6 +35,7 @@ function Home() {
     </div>
     </>
     </>
+    <Footer />
     </>
     
   )
