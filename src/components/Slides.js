@@ -7,7 +7,7 @@ function Slides() {
     <Carousel.Item className='h-100'>
       <img
         className="d-block w-100" 
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyhFpAAwbftNfTklEjjPCMOyJizgTtTin0HaAO-pnrgRJ5utX6LGRrblivOHHzbBIAIc8&usqp=CAU"
+        src="https://thumbs.dreamstime.com/b/young-african-boy-drinking-water-community-borehole-hand-pump-young-african-boy-drinking-water-community-172697689.jpg"
         height='600'
         alt="First slide"
       />
