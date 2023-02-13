@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Userbar from './Navbar';
 import '../App.css';
 import { 
   MDBBtn, 
@@ -23,7 +22,6 @@ function Signup() {
   }
   return (
     <>
-    {/* <Userbar/> */}
     <MDBContainer fluid className='bg'>
 
       <MDBCard className='text-black m-1 bg-transparent align-items-center pt-5' style={{borderRadius: '25px'}}>
@@ -67,6 +65,7 @@ function Signup() {
           </MDBRow>
         </MDBCardBody>
       </MDBCard>
+      
 
     </MDBContainer>
     </>

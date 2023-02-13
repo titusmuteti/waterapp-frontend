@@ -19,7 +19,11 @@ function Login() {
     const navigate = useNavigate();
   
     function handleClick(){
-        navigate('/signup')
+        navigate('/selfserviceportal')
+    }
+
+    function handleLogin () {
+        navigate('/clientdashboard')
     }
   return (
     <>
@@ -47,7 +51,7 @@ function Login() {
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me'/>
               </div>
 	
-              <MDBBtn className='mb-4' size='lg'>Login</MDBBtn>
+              <MDBBtn onClick={handleLogin} className='mb-4' size='lg'>Login</MDBBtn>
 
               <div>
                 <MDBBtn color='link' onClick={handleClick} className='text-decorate-underline'>Don't have an account? REGISTER</MDBBtn>
