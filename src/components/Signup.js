@@ -23,7 +23,7 @@ function Signup() {
   }
   return (
     <>
-    <Userbar/>
+    {/* <Userbar/> */}
     <MDBContainer fluid className='bg'>
 
       <MDBCard className='text-black m-1 bg-transparent align-items-center pt-5' style={{borderRadius: '25px'}}>
