@@ -7,8 +7,27 @@ import SelfServicePortal from './pages/SelfServicePortal';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ClientDashboard from './Dashboards/ClientDashboard';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [clients, setClients] = useState([]);
+  
+  useEffect(()=> {
+    Promise.all([
+      fetch('/me'),
+      fetch('/clients')
+    ])
+    .then(([resUser, resClient])=> 
+    Promise.all([resUser.json(), resClient.json()]))
+    .then(([userData, clientData]) => {
+      setUser(userData);
+      setClients(clientData);
+    });
+  }, [])
+
+  if(user) return <Login onLogin={setUser} />
+
     return (
         <BrowserRouter>
         <section>
