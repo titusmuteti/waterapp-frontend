@@ -36,7 +36,7 @@ function Signup({onLogin, setClients}) {
       password,
       password_confirmation: confirmPassword
     };
-    fetch ('http://localhost:3000"/me', {
+    fetch ('/me', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newClient)

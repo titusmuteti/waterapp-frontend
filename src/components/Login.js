@@ -21,7 +21,6 @@ function Login({onLogin}) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-
   function handleLogin(e){
     e.preventDefault()
     setIsLoading(false)
@@ -41,6 +40,10 @@ function Login({onLogin}) {
   }
 
   // const navigate = useNavigate();
+
+  // function handleClick(){
+  //   navigate('/selfserviceportal')
+  // }
   
 
   return (
@@ -76,7 +79,7 @@ function Login({onLogin}) {
               </article>
 
               <div>
-                <MDBBtn color='link' className='text-decorate-underline'>Don't have an account? REGISTER</MDBBtn>
+                <MDBBtn color='link' className='text-decorate-underline'                            >Don't have an account? REGISTER</MDBBtn>
               </div>
               
             </MDBCol>
