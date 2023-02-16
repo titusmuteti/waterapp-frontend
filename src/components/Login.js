@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Userbar from './Navbar';
 import '../App.css';
@@ -15,16 +15,37 @@ import {
 } 
 from 'mdb-react-ui-kit';
 
-function Login() {
-    const navigate = useNavigate();
-  
-    function handleClick(){
-        navigate('/selfserviceportal')
-    }
+function Login({onLogin}) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-    function handleLogin () {
-        navigate('/clientdashboard')
-    }
+  function handleLogin(e){
+    e.preventDefault()
+    setIsLoading(false)
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({email, password})
+    })
+    .then((resp)=> {
+      setIsLoading(false);
+      if(resp.ok) {
+        resp.json().then((user)=> onLogin(user))
+      }else {
+        resp.json().then((error)=> setErrors(error.errors))
+      }
+    })
+  }
+
+  // const navigate = useNavigate();
+
+  // function handleClick(){
+  //   navigate('/selfserviceportal')
+  // }
+  
+
   return (
     <>
     <Userbar/>
@@ -39,22 +60,26 @@ function Login() {
 
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="envelope me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Your Email' id='form2' type='email'/>
+                <MDBInput label='Your Email' id='email' type='email' onChange={(e) => setEmail(e.target.value)}/>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="lock me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Password' id='form3' type='password'/>
+                <MDBInput label='Password' id='password' type='password' onChange={(e) => setPassword(e.target.value)}/>
               </div>
 
               <div className='mb-4'>
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me'/>
               </div>
 	
-              <MDBBtn onClick={handleLogin} className='mb-4' size='lg'>Login</MDBBtn>
+              <MDBBtn onClick={handleLogin} className='mb-4' size='lg'>{isLoading ? "Loading..." : "Login"}</MDBBtn>
+
+              <article>
+                {errors}
+              </article>
 
               <div>
-                <MDBBtn color='link' onClick={handleClick} className='text-decorate-underline'>Don't have an account? REGISTER</MDBBtn>
+                <MDBBtn color='link' className='text-decorate-underline'                            >Don't have an account? REGISTER</MDBBtn>
               </div>
               
             </MDBCol>
