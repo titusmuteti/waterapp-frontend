@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import { 
   MDBBtn, 
   MDBContainer, 
-  MDBRow, 
-  MDBCol, 
+  MDBCardTitle,
   MDBCard, 
   MDBCardBody, 
   MDBInput, 
@@ -13,39 +11,41 @@ import {
   MDBCheckbox 
 } 
 from 'mdb-react-ui-kit';
+import { useNavigate } from 'react-router-dom';
 
-function Signup({onLogin, setClients}) {
-  const [name, setName] = useState("");
+function Signup({onLogin, onSelectForm}) {
+  const navigate = useNavigate();
+
+  const [firstname, setFirstName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirm_password, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
-  
-  function handleClick(){
-    navigate('/login')
-  }
-
-  function handleSignUp(){
+  function handleSubmit(e){
     setIsLoading(true);
+    e.preventDefault();
     const newClient = {
-      name,
+      firstname,
       email,
+      phone_number,
       password,
-      password_confirmation: confirmPassword
+      password_confirmation: confirm_password
     };
-    fetch ('/me', {
+    fetch ('/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newClient)
     })
-    .then((resp)=> {
-      if (resp.ok) {
-        resp.json().then((user)=> setClients(user))
+    .then((response)=> {
+      setIsLoading(false);
+      if (response.ok) {
+        response.json().then((user)=> onLogin(user))
+        navigate('/clientdashboard')
       }else {
-        resp.json().then((error) => setErrors(error.errors))
+        response.json().then((error) => setErrors(error.errors))
       }
     });
   }
@@ -55,51 +55,54 @@ function Signup({onLogin, setClients}) {
 
       <MDBCard className='text-black m-1 bg-transparent align-items-center pt-5' style={{borderRadius: '25px'}}>
         <MDBCardBody className='bg-secondary w-25 mt-2 pt-3'>
-          <MDBRow>
-            <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center ml-auto mr-auto'>
 
-              <p classNAme="text-center fs-1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+          <MDBCardTitle className="h2 mb-5 text-center font-weight-bold">Sign up</MDBCardTitle>
 
-              <div className="d-flex flex-row align-items-center mb-4 ">
-               	<MDBIcon fas icon="user me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Your Name' id='name' type='text' className='w-100' onChange={(e) => setName(e.target.value)}/>
-              </div>
+          <form onSubmit={handleSubmit}>
+            <div className="d-flex flex-row align-items-center mb-4 ">
+              <MDBIcon fas icon="user me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBInput label='Your Firstname' id='name' type='text' className='w-100' onChange={(e) => setFirstName(e.target.value)}/>
+            </div>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="envelope me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Your Email' id='email' type='email' onChange={(e) => setEmail(e.target.value)}/>
-              </div>
+            <div className="d-flex flex-row align-items-center mb-4">
+              <MDBIcon fas icon="envelope me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBInput label='Your Email' id='email' type='email' onChange={(e) => setEmail(e.target.value)}/>
+            </div>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="lock me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Password' id='password' type='password'onChange={(e) => setPassword(e.target.value)}/>
-              </div>
+            <div className="d-flex flex-row align-items-center mb-4">
+              <MDBIcon fas icon="phone me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBInput label='Phone Number' id='phonenumber' type='text'onChange={(e) => setPhoneNumber(e.target.value)}/>
+            </div>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="key me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Confirm password' id='confirmPassword' type='password' onChange={(e) => setConfirmPassword(e.target.value)}/>
-              </div>
+            <div className="d-flex flex-row align-items-center mb-4">
+              <MDBIcon fas icon="lock me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBInput label='Password' id='password' type='password'onChange={(e) => setPassword(e.target.value)}/>
+            </div>
 
-              <div className='mb-4'>
-                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me'/>
-              </div>
-	
-              <MDBBtn className='mb-4' size='lg' onClick={handleSignUp}>{isLoading ? "Loading..." : "Sign Up"}</MDBBtn>
 
-              <article>
-                {errors.length > 0 ? (errors.map((err) => <ul><li key={err}>{err}</li></ul>)) : ""}
-              </article>
+            <div className="d-flex flex-row align-items-center mb-4">
+              <MDBIcon fas icon="key me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBInput label='Confirm password' id='confirmPassword' type='password' onChange={(e) => setConfirmPassword(e.target.value)}/>
+            </div>
 
-              <div>
-                <MDBBtn color='link' onClick={handleClick} className='text-black'>Already have an account? LOGIN</MDBBtn>
-              </div>
-              
-            </MDBCol>
-          </MDBRow>
+            <div className='mb-4'>
+              <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me'/>
+            </div>
+
+            <MDBBtn className='mb-4' size='sm' type='submit'>{isLoading ? "Loading..." : "Sign Up"}</MDBBtn>
+
+            <article>
+              {errors.length > 0 ? (errors.map((err) => <ul><li key={err}>{err}</li></ul>)) : ""}
+            </article>
+
+            <div>
+              <p className='text-center'>Already have an account?<MDBBtn color='link'className='text-black pl-0' onClick={()=>onSelectForm(true)}>LOGIN</MDBBtn></p>
+            </div>
+          
+          </form>
         </MDBCardBody>
       </MDBCard>
-      
-
+  
     </MDBContainer>
     </>
   );

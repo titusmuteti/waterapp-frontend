@@ -14,27 +14,27 @@ function ClientDashboard() {
   const [setTrainersList] = useState([]);
   const [dashboardTrainers, setDashboardTrainers] = useState([]);
 
-  useLayoutEffect(() => {
-    if (user) return;
-    toast.error('You must be logged in to visit dashboard');
-    navigate(-1);
-  }, [user, navigate]);
+  // useLayoutEffect(() => {
+  //   if (user) return;
+  //   toast.error('You must be logged in to visit dashboard');
+  //   navigate(-1);
+  // }, [user, navigate]);
 
-  useEffect(() => {
-    fetch('/trainers')
-      .then((res) => res.json())
-      .then((data) => {
-        setTrainersList(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('/clients')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setTrainersList(data);
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    fetch('dashboard_trainers')
-      .then((res) => res.json())
-      .then((data) => {
-        setDashboardTrainers(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('/employees')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setDashboardTrainers(data);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -48,35 +48,25 @@ function ClientDashboard() {
                 <h1>Hello {user?.firstname}!</h1>
               </div>
               <div className="sect">
-                <h2>Today&apos;s workout</h2>
+                <h2> Meter reading</h2>
                 <div>
-                  <p>morning run </p>
-                  <p>morning run </p>
-                  <p>morning run </p>
-                  <p>morning run </p>
+                <p>Previous reading:</p>
+                <p>Current reading:</p>
+                <p>Units Consumed:</p>
                 </div>
               </div>
             </div>
             <div className="sect">
-              <h2> Trainers</h2>
-              {dashboardTrainers?.map((trainer, i) => (
-                <div key={i} className="trainers">
-                  <div className="trainer-details" onClick={() => navigate(`/trainer/${trainer.id}`)}>
-                    <h1>
-                      {trainer.firstname.slice(0, 1)} {trainer.lastname.slice(0, 1)}
-                    </h1>
-                    <h5>{`${trainer.firstname} ${trainer.lastname}`}</h5>
-                  </div>
-                </div>
-              ))}
+              <h2> Account</h2>
+              <p>Arrears:</p>
+              <p>Rater per unit:</p>
+              <p>Current Bill:</p>
+              <p className='font-weight-bold'>Total amount:</p>
             </div>
           </div>
           <div className="grid-two">
             <div className="sect2">
               <div className="">
-                {/* <NavLink className="profile__edit" to="/profile">
-              Profile
-            </NavLink> */}
                 <h1> Profile </h1>
               </div>
               <div className="profile-details">
@@ -88,50 +78,37 @@ function ClientDashboard() {
                 </h5>
               </div>
               <div className="profile-details">
-                <h3>Current</h3>
+                <h3>Customer Details</h3>
                 <div className="details">
                   <div>
-                    <h5>{user?.current_weight} kg</h5>
-                    <p>Weight</p>
+                    <h5>Name</h5>
+                    <p>John Makau</p>
                   </div>
                   <div>
-                    <h5>{user?.height}cm</h5>
-                    <p>Height</p>
+                    <h5>Location</h5>
+                    <p>Tala</p>
                   </div>
                   <div>
-                    <h5>{user?.age}</h5>
-                    <p>Age</p>
+                    <h5>Contact</h5>
+                    <p>0712345678</p>
                   </div>
                 </div>
               </div>
               <div className="profile-details">
-                <h3>Target/ Goal</h3>
+                <h3>Report a complain</h3>
                 <div className="detail">
-                  <h5> Lose weight</h5>
-                  <p>Target weight : 48 kg</p>
+                  {/* <h5> Lose weight</h5>
+                  <p>Target weight : 48 kg</p> */}
                 </div>
-              </div>
-              <div className="edit-button">
-                <button
-                  onClick={() => {
-                    navigate('/Register');
-                  }}
-                >
-                  {' '}
-                  Edit{' '}
-                </button>
               </div>
             </div>
           </div>
         </div>
         <div className="grid-row-two">
           <div className="sect">
-            <h2> Current Workout</h2>
-            <div className="trainers">
-              <div>
-                <h5>Abs workout </h5>
-              </div>
-            </div>
+            <h2> Payment</h2>
+            <p>M-pesa</p>
+            <p>KCB</p>
           </div>
         </div>
       </div>
