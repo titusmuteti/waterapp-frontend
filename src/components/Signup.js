@@ -60,28 +60,28 @@ function Signup({onLogin, onSelectForm}) {
 
           <form onSubmit={handleSubmit}>
             <div className="d-flex flex-row align-items-center mb-4 ">
-              <MDBIcon fas icon="user me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBIcon fas icon="user me-3" size='lg' className='pb-4 mb-3 pr-1'/>
               <MDBInput label='Your Firstname' id='name' type='text' className='w-100' onChange={(e) => setFirstName(e.target.value)}/>
             </div>
 
             <div className="d-flex flex-row align-items-center mb-4">
-              <MDBIcon fas icon="envelope me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBIcon fas icon="envelope me-3" size='lg' className='pb-4 mb-3 pr-1'/>
               <MDBInput label='Your Email' id='email' type='email' onChange={(e) => setEmail(e.target.value)}/>
             </div>
 
             <div className="d-flex flex-row align-items-center mb-4">
-              <MDBIcon fas icon="phone me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBIcon fas icon="phone me-3" size='lg' className='pb-4 mb-3 pr-1'/>
               <MDBInput label='Phone Number' id='phonenumber' type='text'onChange={(e) => setPhoneNumber(e.target.value)}/>
             </div>
 
             <div className="d-flex flex-row align-items-center mb-4">
-              <MDBIcon fas icon="lock me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBIcon fas icon="lock me-3" size='lg' className='pb-4 mb-3 pr-1'/>
               <MDBInput label='Password' id='password' type='password'onChange={(e) => setPassword(e.target.value)}/>
             </div>
 
 
             <div className="d-flex flex-row align-items-center mb-4">
-              <MDBIcon fas icon="key me-3" size='lg' className='pb-4 mb-3'/>
+              <MDBIcon fas icon="key me-3" size='lg' className='pb-4 mb-3 pr-1'/>
               <MDBInput label='Confirm password' id='confirmPassword' type='password' onChange={(e) => setConfirmPassword(e.target.value)}/>
             </div>
 
@@ -102,6 +102,15 @@ function Signup({onLogin, onSelectForm}) {
           </form>
         </MDBCardBody>
       </MDBCard>
+
+      <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        rel="stylesheet"
+      />
   
     </MDBContainer>
     </>
