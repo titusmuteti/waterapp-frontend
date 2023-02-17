@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Userbar from './Navbar';
 import '../App.css';
 import { 
   MDBBtn, 
   MDBContainer, 
-  MDBRow, 
-  MDBCol, 
+  MDBCardTitle, 
   MDBCard, 
   MDBCardBody, 
   MDBInput, 
@@ -14,79 +11,85 @@ import {
   MDBCheckbox 
 } 
 from 'mdb-react-ui-kit';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Login({onLogin}) {
+function Login({onLogin, onSelectForm}) {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  function handleLogin(e){
+  function handleSubmit(e){
     e.preventDefault()
     setIsLoading(false)
     fetch('/login', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json',
+    Accept: 'application/json' },
       body: JSON.stringify({email, password})
     })
-    .then((resp)=> {
+    .then((response)=> {
       setIsLoading(false);
-      if(resp.ok) {
-        resp.json().then((user)=> onLogin(user))
+      if(response.ok) {
+        response.json().then((user)=> onLogin(user))
+        toast.success('Login successful');
+        window.location.href = '/clientdashboard';
       }else {
-        resp.json().then((error)=> setErrors(error.errors))
+        response.json().then((error)=> setErrors(error.errors))
+        toast.warning('Wrong email or password');
       }
     })
   }
-
-  // const navigate = useNavigate();
-
-  // function handleClick(){
-  //   navigate('/selfserviceportal')
-  // }
   
 
   return (
     <>
-    <Userbar/>
     <MDBContainer fluid className='bg'>
 
       <MDBCard className='text-black m-1 bg-transparent align-items-center pt-5' style={{borderRadius: '25px'}}>
         <MDBCardBody className='bg-secondary w-25 mt-2 pt-3'>
-          <MDBRow>
-            <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center ml-auto mr-auto'>
 
-              <p classNAme="text-center fs-1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+          <MDBCardTitle className='h2 mb-5 text-center font-weight-bold'>Login</MDBCardTitle>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="envelope me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Your Email' id='email' type='email' onChange={(e) => setEmail(e.target.value)}/>
-              </div>
+          <form onSubmit={handleSubmit}>
+            <div className="d-flex flex-row align-items-center mb-4">
+              <MDBIcon fas icon="envelope me-3" size='lg' className='pb-4 mb-3 pr-1'/>
+              <MDBInput label='Your Email' id='email' type='email' onChange={(e) => setEmail(e.target.value)}/>
+            </div>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="lock me-3" size='lg' className='pb-4 mb-3'/>
-                <MDBInput label='Password' id='password' type='password' onChange={(e) => setPassword(e.target.value)}/>
-              </div>
+            <div className="d-flex flex-row align-items-center mb-4">
+              <MDBIcon fas icon="lock me-3" size='lg' className='pb-4 mb-3 pr-1'/>
+              <MDBInput label='Password' id='password' type='password' onChange={(e) => setPassword(e.target.value)}/>
+            </div>
 
-              <div className='mb-4'>
-                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me'/>
-              </div>
-	
-              <MDBBtn onClick={handleLogin} className='mb-4' size='lg'>{isLoading ? "Loading..." : "Login"}</MDBBtn>
+            <div className='mb-4'>
+              <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me'/>
+            </div>
 
-              <article>
-                {errors}
-              </article>
+            <MDBBtn className='mb-4' size='sm' type='submit'>{isLoading ? "Loading..." : "Login"}</MDBBtn>
 
-              <div>
-                <MDBBtn color='link' className='text-decorate-underline'                            >Don't have an account? REGISTER</MDBBtn>
-              </div>
-              
-            </MDBCol>
-            
-          </MDBRow>
+            <ToastContainer />
+
+            <article>
+              {errors}
+            </article>
+
+             <p className='text-center'> Don't have an account? <MDBBtn color='link' className='text-decorate-underline pl-0' onClick={()=>onSelectForm(false)}>SIGNUP</MDBBtn></p>
+          </form> 
         </MDBCardBody>
       </MDBCard>
+
+      <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        rel="stylesheet"
+      />
+
     </MDBContainer>
     </>
   );
