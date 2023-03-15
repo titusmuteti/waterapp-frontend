@@ -24,7 +24,7 @@ function App() {
     });
   }, [])
 
-  // if(!user) return <SelfServicePortal onLogin={setUser} />
+  if(!user) return <SelfServicePortal onLogin={setUser} />
 
     return (
         <BrowserRouter>
