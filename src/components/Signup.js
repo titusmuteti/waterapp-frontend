@@ -11,10 +11,8 @@ import {
   MDBCheckbox 
 } 
 from 'mdb-react-ui-kit';
-import { useNavigate } from 'react-router-dom';
 
 function Signup({onLogin, onSelectForm}) {
-  const navigate = useNavigate();
 
   const [firstname, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,7 +41,7 @@ function Signup({onLogin, onSelectForm}) {
       setIsLoading(false);
       if (response.ok) {
         response.json().then((user)=> onLogin(user))
-        navigate('/clientdashboard')
+        window.location.href = '/clientdashboard';
       }else {
         response.json().then((error) => setErrors(error.errors))
       }

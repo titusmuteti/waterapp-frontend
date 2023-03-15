@@ -5,20 +5,22 @@ import Footer from '../components/Footer';
 import './client-dashboard.css';
 import Sidebar from './Sidebar';
 import { useUser } from './auth';
-import { toast } from 'react-toastify';
 import userEvent from '@testing-library/user-event';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function ClientDashboard() {
+
+function ClientDashboard({onLogin}) {
   const navigate = useNavigate();
   const { user } = useUser();
   const [setTrainersList] = useState([]);
   const [dashboardTrainers, setDashboardTrainers] = useState([]);
 
-  // useLayoutEffect(() => {
-  //   if (user) return;
-  //   toast.error('You must be logged in to visit dashboard');
-  //   navigate(-1);
-  // }, [user, navigate]);
+  useLayoutEffect(() => {
+    if (!user) return;
+    toast.error('You must be logged in to visit dashboard')
+    navigate(-1);
+  }, [user, navigate]);
 
   // useEffect(() => {
   //   fetch('/clients')
@@ -40,12 +42,16 @@ function ClientDashboard() {
     <>
       <Navbar />
       <div className="dashboard">
+
+        {toast.success('Login successful')}
+        <ToastContainer />
+
         <div className="grid-row-one">
           <Sidebar />
           <div className="grid-one">
             <div>
               <div className="sect">
-                <h1>Hello {user?.firstname}!</h1>
+                <h1>Hello {onLogin?.firstname}!</h1>
               </div>
               <div className="sect">
                 <h2> Meter reading</h2>
