@@ -1,10 +1,31 @@
 body {
   margin: 0;
 }
+
 .bg {
   background-image: url("/public/images/208539.jpg");
-  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* Media query for small devices (e.g., smartphones) */
+@media (max-width: 767px) {
+  .bg {
+    height: auto;
+  }
+}
+
+/* Media query for medium devices (e.g., tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bg {
+    height: auto;
+  }
+}
+
+/* Media query for large devices (e.g., desktops) */
+@media (min-width: 1024px) {
+  .bg {
+    height: auto;
+  }
 }
