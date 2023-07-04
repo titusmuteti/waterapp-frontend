@@ -13,8 +13,8 @@ function App() {
   
   useEffect(()=> {
     Promise.all([
-      fetch('/me'),
-      fetch('/clients')
+      fetch('http://localhost:3000/me'),
+      fetch('http://localhost:3000/clients')
     ])
     .then(([resUser, resClient])=> 
     Promise.all([resUser.json(), resClient.json()]))
