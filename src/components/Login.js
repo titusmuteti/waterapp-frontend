@@ -24,7 +24,7 @@ function Login({onLogin, onSelectForm}) {
   function handleSubmit(e){
     e.preventDefault()
     setIsLoading(false)
-    fetch('/login', {
+    fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json',
     Accept: 'application/json' },

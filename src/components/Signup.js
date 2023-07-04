@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { MDBBtn, MDBContainer, MDBCardTitle, MDBCard, MDBCardBody, MDBInput, MDBIcon, MDBCheckbox } from 'mdb-react-ui-kit';
 
+axios.defaults.headers.post['Content-Type'] = 'application/json'; // Set default Content-Type header for all requests
+
 function Signup({ onLogin, onSelectForm }) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phone_number, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,12 +27,17 @@ function Signup({ onLogin, onSelectForm }) {
       return;
     }
 
-    if (!email || !password) {
-      setErrors('Email and password are required.');
+    if (!first_name) {
+      setErrors('First name required.');
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (!last_name) {
+      setErrors('Last name required.');
+      return;
+    }
+
+    if (password !== confirm_password) {
       setErrors('Passwords do not match.');
       return;
     }
@@ -37,28 +45,22 @@ function Signup({ onLogin, onSelectForm }) {
     setIsLoading(true);
 
     const newClient = {
-      firstName,
-      lastName,
+      first_name,
+      last_name,
       email,
-      phoneNumber,
+      phone_number,
       password,
-      password_confirmation: confirmPassword
+      password_confirmation: confirm_password
     };
 
     try {
-      const response = await fetch('http://localhost:3000/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newClient)
-      });
+      const response = await axios.post('http://localhost:3000/signup', newClient);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        onLogin(data.user);
+      if (response.status === 200) {
+        onLogin(response.data.user);
         window.location.href = '/clientdashboard';
       } else {
-        setErrors(data.errors);
+        setErrors(response.data.errors);
       }
     } catch (error) {
       console.error('An error occurred:', error);
@@ -86,12 +88,12 @@ function Signup({ onLogin, onSelectForm }) {
           <form onSubmit={handleSubmit} onReset={handleFormReset}>
             <div className='d-flex flex-row align-items-center mb-4'>
               <MDBIcon fas icon='user me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Your Firstname' id='name' type='text' className='w-100' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+              <MDBInput label='Your Firstname' id='name' type='text' className='w-100' value={first_name} onChange={(e) => setFirstName(e.target.value)} />
             </div>
 
             <div className='d-flex flex-row align-items-center mb-4'>
               <MDBIcon fas icon='user me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Your Lastname' id='name' type='text' className='w-100' value={lastName} onChange={(e) => setLastName(e.target.value)} />
+              <MDBInput label='Your Lastname' id='name' type='text' className='w-100' value={last_name} onChange={(e) => setLastName(e.target.value)} />
             </div>
 
             <div className='d-flex flex-row align-items-center mb-4'>
@@ -101,7 +103,7 @@ function Signup({ onLogin, onSelectForm }) {
 
             <div className='d-flex flex-row align-items-center mb-4'>
               <MDBIcon fas icon='phone me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Phone Number' id='phonenumber' type='text' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+              <MDBInput label='Phone Number' id='phonenumber' type='text' value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)} />
             </div>
 
             <div className='d-flex flex-row align-items-center mb-4'>
@@ -111,7 +113,7 @@ function Signup({ onLogin, onSelectForm }) {
 
             <div className='d-flex flex-row align-items-center mb-4'>
               <MDBIcon fas icon='key me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Confirm password' id='confirmPassword' type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+              <MDBInput label='Confirm password' id='confirmPassword' type='password' value={confirm_password} onChange={(e) => setConfirmPassword(e.target.value)} />
             </div>
 
             <div className='mb-4'>

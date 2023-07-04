@@ -6,38 +6,46 @@ import WorkWithUs from './pages/WorkWithUs';
 import SelfServicePortal from './pages/SelfServicePortal';
 import ClientDashboard from './Dashboards/ClientDashboard';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState(null);
   const [clients, setClients] = useState([]);
-  
-  useEffect(()=> {
-    Promise.all([
-      fetch('http://localhost:3000/me'),
-      fetch('http://localhost:3000/clients')
-    ])
-    .then(([resUser, resClient])=> 
-    Promise.all([resUser.json(), resClient.json()]))
-    .then(([userData, clientData]) => {
-      setUser(userData);
-      setClients(clientData);
-    });
-  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [resUser, resClients] = await Promise.all([
+          axios.get('http://localhost:3000/me'),
+          axios.get('http://localhost:3000/clients')
+        ]);
+        
+        setUser(resUser.data);
+        setClients(resClients.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // if(!user) return <SelfServicePortal onLogin={setUser} />
 
-    return (
-        <BrowserRouter>
-        <section>
-            <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/about" element={<About/>} />
-                <Route exact path="/selfserviceportal" element={<SelfServicePortal/>} />
-                <Route exact path="/workwithus" element={<WorkWithUs/>} />
-                <Route exact path="/clientdashboard" element={<ClientDashboard onLogin={setUser} />} />
-                <Route path="*" element={<h1 className="text-indigo-900/100 text-5xl underline m-2 font-bold">404: Page Not Found!</h1>} />
-            </Routes>
-        
+  return (
+    <BrowserRouter>
+      <section>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/about" element={<About />} />
+          <Route exact path="/selfserviceportal" element={<SelfServicePortal />} />
+          <Route exact path="/workwithus" element={<WorkWithUs />} />
+          <Route exact path="/clientdashboard" element={<ClientDashboard onLogin={setUser} />} />
+          <Route
+            path="*"
+            element={<h1 className="text-indigo-900/100 text-5xl underline m-2 font-bold">404: Page Not Found!</h1>}
+          />
+        </Routes>
       </section>
     </BrowserRouter>
   );
