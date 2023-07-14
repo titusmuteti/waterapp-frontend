@@ -16,3 +16,19 @@
 .mini-navbar span:last-child {
   margin-right: 0;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .mini-navbar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    height: auto;
+  }
+
+  .mini-navbar a {
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+}
