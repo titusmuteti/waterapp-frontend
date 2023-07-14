@@ -1,0 +1,18 @@
+.mini-navbar {
+  background-color: #f2f2f2;
+  padding: 1px;
+  padding-bottom: 5px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  color: green; 
+}
+
+.mini-navbar a {
+  margin-right: 200px;
+  cursor: pointer;
+}
+
+.mini-navbar span:last-child {
+  margin-right: 0;
+}

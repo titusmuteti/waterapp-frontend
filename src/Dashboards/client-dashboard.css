@@ -1,12 +1,12 @@
 .dashboard {
-    background-color: #f9f9fb;
+    /* background-color: #f9f9fb; */
     padding: 0.5em;
     width: 97%;
     margin: auto;
   }
   
   .grid-row-one {
-    background-color: #f9f9fb;
+    /* background-color: #f9f9fb; */
     display: grid;
     gap: 70px;
     grid-template-columns: 11rem auto 25rem 12rem;
