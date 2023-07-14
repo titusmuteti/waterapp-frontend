@@ -63,7 +63,7 @@ function Signup({ onLogin, onSelectForm }) {
 
       if (response.status === 200) {
         onLogin(response.data.user);
-        window.location.href = 'https://makawasco-frontend.vercel.app/clientdashboard';
+        window.location.href = 'https://waterapp.vercel.app//clientdashboard';
       } else {
         setErrors(response.data.errors);
       }
