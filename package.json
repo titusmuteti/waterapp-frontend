@@ -2,7 +2,7 @@
   "name": "makawasco_frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "https://makawasco-backend.onrender.com",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.1",
     "@iconscout/react-unicons": "^1.1.6",

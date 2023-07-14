@@ -45,16 +45,21 @@ function Signup({ onLogin, onSelectForm }) {
     setIsLoading(true);
 
     const newClient = {
-      first_name,
-      last_name,
-      email,
-      phone_number,
-      password,
-      password_confirmation: confirm_password
+      client: {
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        password,
+        password_confirmation: confirm_password
+      }
     };
+    
+    // ... Rest of the code ...
+    
 
     try {
-      const response = await axios.post('http://localhost:3000/signup', newClient);
+      const response = await axios.post('https://makawasco-backend.onrender.com/signup', newClient);
 
       if (response.status === 200) {
         onLogin(response.data.user);

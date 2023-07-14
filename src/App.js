@@ -16,8 +16,8 @@ function App() {
     const fetchData = async () => {
       try {
         const [resUser, resClients] = await Promise.all([
-          axios.get('http://localhost:3000/me'),
-          axios.get('http://localhost:3000/clients')
+          axios.get('https://makawasco-backend.onrender.com/me'),
+          axios.get('https://makawasco-backend.onrender.com/clients')
         ]);
         
         setUser(resUser.data);

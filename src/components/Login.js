@@ -24,7 +24,7 @@ function Login({onLogin, onSelectForm}) {
   function handleSubmit(e){
     e.preventDefault()
     setIsLoading(false)
-    fetch('http://localhost:3000/login', {
+    fetch('https://makawasco-backend.onrender.com/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json',
     Accept: 'application/json' },
