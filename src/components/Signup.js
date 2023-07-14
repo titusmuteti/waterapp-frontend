@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { MDBBtn, MDBContainer, MDBCardTitle, MDBCard, MDBCardBody, MDBInput, MDBIcon, MDBCheckbox } from 'mdb-react-ui-kit';
+import { 
+  MDBBtn, 
+  MDBContainer, 
+  MDBCardTitle, 
+  MDBCard, 
+  MDBCardBody, 
+  MDBInput, 
+  MDBIcon, 
+  MDBCheckbox 
+} from 'mdb-react-ui-kit';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'; // Set default Content-Type header for all requests
 
@@ -63,7 +72,7 @@ function Signup({ onLogin, onSelectForm }) {
 
       if (response.status === 200) {
         onLogin(response.data.user);
-        window.location.href = 'https://waterapp.vercel.app//clientdashboard';
+        window.location.href = 'https://waterapp.vercel.app/clientdashboard';
       } else {
         setErrors(response.data.errors);
       }
@@ -86,67 +95,66 @@ function Signup({ onLogin, onSelectForm }) {
 
   return (
     <MDBContainer fluid className='bg'>
-      <MDBCard className='text-black m-1 bg-transparent align-items-center pt-5' style={{ borderRadius: '25px' }}>
-        <MDBCardBody className='bg-secondary w-25 mt-2 pt-3'>
-          <MDBCardTitle className='h2 mb-5 text-center font-weight-bold'>Sign up</MDBCardTitle>
+      <MDBContainer className='d-flex align-items-center justify-content-center' style={{ minHeight: '100vh' }}>
+        <MDBCard className='text-black' style={{ maxWidth: '400px', width: '90%', borderRadius: '25px' }}>
+          <MDBCardBody className='p-5 bg-secondary'>
+            <MDBCardTitle className='h2 mb-5 text-center font-weight-bold'>Sign up</MDBCardTitle>
 
-          <form onSubmit={handleSubmit} onReset={handleFormReset}>
-            <div className='d-flex flex-row align-items-center mb-4'>
-              <MDBIcon fas icon='user me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Your Firstname' id='name' type='text' className='w-100' value={first_name} onChange={(e) => setFirstName(e.target.value)} />
-            </div>
+            <form onSubmit={handleSubmit} onReset={handleFormReset}>
+              <div className='mb-4'>
+                <MDBIcon fas icon='user me-3' size='lg' className='pb-4 mb-3 pr-1' />
+                <MDBInput label='Your Firstname' id='name' type='text' className='w-100' value={first_name} onChange={(e) => setFirstName(e.target.value)} />
+              </div>
 
-            <div className='d-flex flex-row align-items-center mb-4'>
-              <MDBIcon fas icon='user me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Your Lastname' id='name' type='text' className='w-100' value={last_name} onChange={(e) => setLastName(e.target.value)} />
-            </div>
+              <div className='mb-4'>
+                <MDBIcon fas icon='user me-3' size='lg' className='pb-4 mb-3 pr-1' />
+                <MDBInput label='Your Lastname' id='name' type='text' className='w-100' value={last_name} onChange={(e) => setLastName(e.target.value)} />
+              </div>
 
-            <div className='d-flex flex-row align-items-center mb-4'>
-              <MDBIcon fas icon='envelope me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Your Email' id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
+              <div className='mb-4'>
+                <MDBIcon fas icon='envelope me-3' size='lg' className='pb-4 mb-3 pr-1' />
+                <MDBInput label='Your Email' id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+              </div>
 
-            <div className='d-flex flex-row align-items-center mb-4'>
-              <MDBIcon fas icon='phone me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Phone Number' id='phonenumber' type='text' value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)} />
-            </div>
+              <div className='mb-4'>
+                <MDBIcon fas icon='phone me-3' size='lg' className='pb-4 mb-3 pr-1' />
+                <MDBInput label='Phone Number' id='phonenumber' type='text' value={phone_number} onChange={(e) => setPhoneNumber(e.target.value)} />
+              </div>
 
-            <div className='d-flex flex-row align-items-center mb-4'>
-              <MDBIcon fas icon='lock me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Password' id='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
+              <div className='mb-4'>
+                <MDBIcon fas icon='lock me-3' size='lg' className='pb-4 mb-3 pr-1' />
+                <MDBInput label='Password' id='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+              </div>
 
-            <div className='d-flex flex-row align-items-center mb-4'>
-              <MDBIcon fas icon='key me-3' size='lg' className='pb-4 mb-3 pr-1' />
-              <MDBInput label='Confirm password' id='confirmPassword' type='password' value={confirm_password} onChange={(e) => setConfirmPassword(e.target.value)} />
-            </div>
+              <div className='mb-4'>
+                <MDBIcon fas icon='key me-3' size='lg' className='pb-4 mb-3 pr-1' />
+                <MDBInput label='Confirm password' id='confirmPassword' type='password' value={confirm_password} onChange={(e) => setConfirmPassword(e.target.value)} />
+              </div>
 
-            <div className='mb-4'>
-              <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-            </div>
+              <div className='mb-4'>
+                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
+              </div>
 
-            <MDBBtn className='mb-4' size='sm' type='submit'>
-              {isLoading ? 'Loading...' : 'Sign Up'}
-            </MDBBtn>
+              <MDBBtn className='mb-4' size='sm' type='submit'>
+                {isLoading ? 'Loading...' : 'Sign Up'}
+              </MDBBtn>
 
-            <article>
-              {errors && <p>{errors}</p>}
-            </article>
+              <article>
+                {errors && <p>{errors}</p>}
+              </article>
 
-            <div>
-              <p className='text-center'>
-                Already have an account?
-                <MDBBtn color='link' className='text-black pl-0' onClick={() => onSelectForm(true)}>
-                  LOGIN
-                </MDBBtn>
-              </p>
-            </div>
-          </form>
-        </MDBCardBody>
-      </MDBCard>
-
-      <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' rel='stylesheet' />
-      <link href='https://use.fontawesome.com/releases/v5.15.1/css/all.css' rel='stylesheet' />
+              <div>
+                <p className='text-center'>
+                  Already have an account?
+                  <MDBBtn color='link' className='text-black pl-0' onClick={() => onSelectForm(true)}>
+                    LOGIN
+                  </MDBBtn>
+                </p>
+              </div>
+            </form>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBContainer>
     </MDBContainer>
   );
 }
