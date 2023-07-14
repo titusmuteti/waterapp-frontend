@@ -35,7 +35,7 @@ function Login({onLogin, onSelectForm}) {
       if(response.ok) {
         response.json().then((user)=> onLogin(user))
         toast.success('Login successful');
-        window.location.href = '/clientdashboard';
+        window.location.href = 'https://makawasco-frontend.vercel.app/clientdashboard';
       }else {
         response.json().then((error)=> setErrors(error.errors))
         toast.warning('Wrong email or password');
