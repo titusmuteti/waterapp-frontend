@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const Admin = () => {
+  const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,6 +24,7 @@ const Admin = () => {
         <div className="card-body">
           <h1 className="card-title text-center">Admin Login</h1>
           <form onSubmit={handleLogin}>
+            
             <div className="form-group">
               <label>Role:</label>
               <select
@@ -35,6 +37,17 @@ const Admin = () => {
                 <option value="Systems Engineer">Systems Engineer</option>
               </select>
             </div>
+
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                type="email"
+                className="form-control"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
             <div className="form-group">
               <label>Password:</label>
               <input
