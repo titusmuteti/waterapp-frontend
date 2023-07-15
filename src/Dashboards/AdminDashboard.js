@@ -3,6 +3,8 @@ import { BiTrash } from 'react-icons/bi';
 
 function AdminDashboard() {
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 10;
 
   useEffect(() => {
     // Fetch data from the backend API
@@ -35,6 +37,26 @@ function AdminDashboard() {
     }
   };
 
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate the indexes of the records to be displayed on the current page
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(data.length / recordsPerPage);
+
   return (
     <div className="container">
       <div>
@@ -57,7 +79,7 @@ function AdminDashboard() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {currentRecords.map((item, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.first_name}</td>
@@ -81,8 +103,30 @@ function AdminDashboard() {
           </tbody>
         </table>
       </div>
+      <div className="pagination">
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage} className="btn btn-primary">
+            Previous
+          </button>
+        )}
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`btn ${currentPage === index + 1 ? 'btn-primary' : 'btn-secondary'}`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        {currentRecords.length === recordsPerPage && (
+          <button onClick={handleNextPage} className="btn btn-primary">
+            Next
+          </button>
+        )}
+      </div>
     </div>
   );
 }
 
 export default AdminDashboard;
+  
