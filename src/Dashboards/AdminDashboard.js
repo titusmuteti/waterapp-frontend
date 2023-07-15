@@ -3,7 +3,6 @@ import React from 'react';
 function AdminDashboard() {
   return (
     <div className="container">
-      <h1>Admin Dashboard</h1>
       <table className="table table-bordered table-responsive">
         <thead className="thead-dark">
           <tr>
