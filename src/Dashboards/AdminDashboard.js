@@ -65,8 +65,7 @@ function AdminDashboard() {
           <thead className="thead-dark sticky-top">
             <tr>
               <th>#</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>First Name</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Last Name</th>
+              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Name</th>
               <th style={{ width: '15%', whiteSpace: 'nowrap' }}>Email</th>
               <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Phone Number</th>
               <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Read</th>
@@ -84,8 +83,7 @@ function AdminDashboard() {
             {currentRecords.map((item, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.client.first_name}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.client.last_name}</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{item.client.first_name}  {item.client.last_name}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.client.email}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.client.phone_number}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.date_read}</td>
