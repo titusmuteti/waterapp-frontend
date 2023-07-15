@@ -7,3 +7,9 @@
   align-items: center;
   margin-right: 0.5rem;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Optional: Adjust the height as needed */
+}
