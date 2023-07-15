@@ -1,0 +1,9 @@
+.action-icons {
+  display: flex;
+}
+
+.action-icons button {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
