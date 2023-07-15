@@ -5,18 +5,29 @@ const Admin = () => {
   const [role, setRole] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Check if the password is correct based on the selected role
-    if (role === 'Managing Director' && password === 'mdpassword') {
-      console.log('Managing Director logged in successfully!');
-    } else if (role === 'Systems Engineer' && password === 'sepassword') {
-      console.log('Systems Engineer logged in successfully!');
-    } else {
-      console.log('Invalid password or role');
+  
+    try {
+      const response = await fetch('https://makawasco-backend.onrender.com/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, role, password }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Logged in successfully!', data.token);
+        // Store the token in local storage or a secure location
+      } else {
+        console.log('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
-  };
+  };  
 
   return (
     <div className="container d-flex justify-content-center">
@@ -24,7 +35,7 @@ const Admin = () => {
         <div className="card-body">
           <h1 className="card-title text-center">Admin Login</h1>
           <form onSubmit={handleLogin}>
-            
+
             <div className="form-group">
               <label>Role:</label>
               <select
