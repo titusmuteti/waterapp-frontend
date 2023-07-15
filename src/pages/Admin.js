@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch('https://makawasco-backend.onrender.com/admin/login', {
         method: 'POST',
@@ -16,18 +19,21 @@ const Admin = () => {
         },
         body: JSON.stringify({ email, role, password }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log('Logged in successfully!', data.token);
         // Store the token in local storage or a secure location
+
+        // Redirect to another page
+        navigate('/admindashboard');
       } else {
         console.log('Invalid credentials');
       }
     } catch (error) {
       console.error('Error:', error);
     }
-  };  
+  };
 
   return (
     <div className="container d-flex justify-content-center">
@@ -35,7 +41,6 @@ const Admin = () => {
         <div className="card-body">
           <h1 className="card-title text-center">Admin Login</h1>
           <form onSubmit={handleLogin}>
-
             <div className="form-group">
               <label>Role:</label>
               <select
