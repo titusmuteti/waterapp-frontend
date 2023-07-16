@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BiTrash, BiEdit } from 'react-icons/bi';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
-import './AdminDashboard.css'
+import './AdminDashboard.css';
 
 function AdminDashboard() {
   const [data, setData] = useState([]);
@@ -65,25 +65,26 @@ function AdminDashboard() {
         <table className="table table-bordered">
           <thead className="thead-dark sticky-top">
             <tr>
-              <th>#</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Name</th>
-              <th style={{ width: '15%', whiteSpace: 'nowrap' }}>Email</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Phone Number</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Read</th>
-              <th style={{ width: '5%', whiteSpace: 'nowrap' }}>Previous Reading</th>
-              <th style={{ width: '5%', whiteSpace: 'nowrap' }}>Current Reading</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Read By</th>
-              <th style={{ width: '5%', whiteSpace: 'nowrap' }}>Balance</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Payment Status</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Paid</th>
-              <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Actions</th>
+              <th className="table-header">#</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Name</th>
+              <th className="table-header" style={{ width: '15%', whiteSpace: 'nowrap' }}>Email</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Phone Number</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Read</th>
+              <th className="table-header" style={{ width: '5%', whiteSpace: 'nowrap' }}>Previous Reading</th>
+              <th className="table-header" style={{ width: '5%', whiteSpace: 'nowrap' }}>Current Reading</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Read By</th>
+              <th className="table-header" style={{ width: '5%', whiteSpace: 'nowrap' }}>Balance</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Payment Status</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Paid</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Area</th>
+              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentRecords.map((item, index) => (
-              <tr key={index}>
+              <tr key={index} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
                 <td>{index + 1}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.client.first_name}  {item.client.last_name}</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{item.client.first_name} {item.client.last_name}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.client.email}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.client.phone_number}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.date_read}</td>
@@ -93,6 +94,7 @@ function AdminDashboard() {
                 <td style={{ whiteSpace: 'nowrap' }}>{item.balance}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.payment_status}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.date_paid}</td>
+                <td style={{ whiteSpace: 'nowrap' }}>{item.lcation}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>
                   <div className="action-icons">
                     <button onClick={() => handleDelete(index)} className="btn btn-danger">

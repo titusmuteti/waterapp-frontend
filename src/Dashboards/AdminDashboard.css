@@ -62,3 +62,15 @@
 .pagination-buttons .btn-primary:hover {
   background-color: #0056b3;
 }
+
+.even-row {
+  background-color: #f8f8f8; 
+}
+
+.odd-row {
+  background-color: #ffffff; 
+}
+
+.table-header {
+  border-bottom: 2px solid #000000; 
+}
