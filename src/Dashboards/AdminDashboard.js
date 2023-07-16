@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BiTrash, BiEdit } from 'react-icons/bi';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import './AdminDashboard.css'
 
 function AdminDashboard() {
@@ -76,7 +77,6 @@ function AdminDashboard() {
               <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Payment Status</th>
               <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Paid</th>
               <th style={{ width: '10%', whiteSpace: 'nowrap' }}>Actions</th>
-
             </tr>
           </thead>
           <tbody>
@@ -93,7 +93,7 @@ function AdminDashboard() {
                 <td style={{ whiteSpace: 'nowrap' }}>{item.balance}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.payment_status}</td>
                 <td style={{ whiteSpace: 'nowrap' }}>{item.date_paid}</td>
-                <td>
+                <td style={{ whiteSpace: 'nowrap' }}>
                   <div className="action-icons">
                     <button onClick={() => handleDelete(index)} className="btn btn-danger">
                       <BiTrash />
@@ -114,7 +114,7 @@ function AdminDashboard() {
         <div className="pagination-buttons">
           {currentPage > 1 && (
             <button onClick={handlePreviousPage} className="btn btn-primary">
-              Previous
+              <BsArrowLeft />
             </button>
           )}
           {Array.from({ length: totalPages }, (_, index) => (
@@ -128,7 +128,7 @@ function AdminDashboard() {
           ))}
           {currentRecords.length === recordsPerPage && (
             <button onClick={handleNextPage} className="btn btn-primary">
-              Next
+              <BsArrowRight />
             </button>
           )}
         </div>
