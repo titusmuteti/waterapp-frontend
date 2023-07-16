@@ -1,13 +1,29 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px;
+  max-width: 1200px;
+
+}
+
+.table-container {
+  overflow-x: auto;
+  min-width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.table-wrapper {
+  width: fit-content;
+  margin: auto;
 }
 
 .table {
   width: 100%;
+  max-width: 1200px;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 .table th,
@@ -29,6 +45,8 @@
   color: #000;
   cursor: pointer;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .action-icons button:hover {
@@ -39,6 +57,13 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.action-icons {
+  display: flex;
+  align-items: center;
 }
 
 .pagination-buttons button {
@@ -64,13 +89,93 @@
 }
 
 .even-row {
-  background-color: #f8f8f8; 
+  background-color: #f8f8f8;
 }
 
 .odd-row {
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
 .table-header {
-  border-bottom: 2px solid #000000; 
+  border-bottom: 2px solid #000000;
+}
+
+.table thead th,
+.table tbody td {
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1200px) {
+  .table thead th,
+  .table tbody td {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .table-container,
+  .table-wrapper,
+  .table {
+    width: 100%;
+  }
+
+  .table-container {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pagination {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 992px) {
+  .table thead th,
+  .table tbody td {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .table-container,
+  .table-wrapper,
+  .table {
+    width: 100%;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .pagination {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .pagination-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .pagination-buttons button {
+    flex: 0 0 45px;
+    margin: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .table th,
+  .table td {
+    white-space: normal;
+  }
 }

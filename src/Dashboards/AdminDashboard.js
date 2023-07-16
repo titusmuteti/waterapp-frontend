@@ -61,56 +61,60 @@ function AdminDashboard() {
 
   return (
     <div className="container">
-      <div>
-        <table className="table table-bordered">
-          <thead className="thead-dark sticky-top">
-            <tr>
-              <th className="table-header">#</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Name</th>
-              <th className="table-header" style={{ width: '15%', whiteSpace: 'nowrap' }}>Email</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Phone Number</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Read</th>
-              <th className="table-header" style={{ width: '5%', whiteSpace: 'nowrap' }}>Previous Reading</th>
-              <th className="table-header" style={{ width: '5%', whiteSpace: 'nowrap' }}>Current Reading</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Read By</th>
-              <th className="table-header" style={{ width: '5%', whiteSpace: 'nowrap' }}>Balance</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Payment Status</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Date Paid</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Area</th>
-              <th className="table-header" style={{ width: '10%', whiteSpace: 'nowrap' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentRecords.map((item, index) => (
-              <tr key={index} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
-                <td>{index + 1}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.client.first_name} {item.client.last_name}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.client.email}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.client.phone_number}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.date_read}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.previous_reading}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.current_reading}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.read_by}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.balance}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.payment_status}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.date_paid}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>{item.lcation}</td>
-                <td style={{ whiteSpace: 'nowrap' }}>
-                  <div className="action-icons">
-                    <button onClick={() => handleDelete(index)} className="btn btn-danger">
-                      <BiTrash />
-                      <span>Delete</span>
-                    </button>
-                    <button className="btn btn-primary">
-                      <BiEdit />
-                      <span>Edit</span>
-                    </button>
-                  </div>
-                </td>
+      <div className="table-container">
+        <div className="table-wrapper"> 
+          <table className="table table-bordered">
+            <thead className="thead-dark sticky-top">
+              <tr>
+                <th className="table-header">#</th>
+                <th className="table-header">Name</th>
+                <th className="table-header">Email</th>
+                <th className="table-header">Phone Number</th>
+                <th className="table-header">Date Read</th>
+                <th className="table-header">Previous Reading</th>
+                <th className="table-header">Current Reading</th>
+                <th className="table-header">Read By</th>
+                <th className="table-header">Balance</th>
+                <th className="table-header">Payment Status</th>
+                <th className="table-header">Date Paid</th>
+                <th className="table-header">Area</th>
+                <th className="table-header">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentRecords.map((item, index) => (
+                <tr key={index} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
+                  <td>{index + 1}</td>
+                  <td style={{ width: '20%', whiteSpace: 'nowrap' }}>
+                    {item.client.first_name} {item.client.last_name}
+                  </td>
+                  <td>{item.client.email}</td>
+                  <td>{item.client.phone_number}</td>
+                  <td>{item.date_read}</td>
+                  <td>{item.previous_reading}</td>
+                  <td>{item.current_reading}</td>
+                  <td>{item.read_by}</td>
+                  <td>{item.balance}</td>
+                  <td>{item.payment_status}</td>
+                  <td>{item.date_paid}</td>
+                  <td>{item.location}</td>
+                  <td>
+                    <div className="action-icons">
+                      <button onClick={() => handleDelete(index)} className="btn btn-danger">
+                        <BiTrash />
+                        <span>Delete</span>
+                      </button>
+                      <button className="btn btn-primary">
+                        <BiEdit />
+                        <span>Edit</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="pagination">
         <div className="pagination-buttons">
