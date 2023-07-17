@@ -7,14 +7,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 function Userbar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="/" className='mr-5 pr-5 m-0'>MAKAWASCO</Navbar.Brand>
+      <Container fluid>
+        <Navbar.Brand href="/" className='mr-auto'>MAKAWASCO</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/" className='pr-5'>Home</Nav.Link>
-            <Nav.Link href="/about" className='pr-5'>About Us</Nav.Link>
-            <NavDropdown title="Customer Service" id="collasible-nav-dropdown" className='pr-5'>
+        <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-center'>
+          <Nav>
+            <Nav.Link href="/" className='pr-3'>Home</Nav.Link>
+            <Nav.Link href="/about" className='pr-3'>About Us</Nav.Link>
+            <NavDropdown title="Customer Service" id="collasible-nav-dropdown" className='pr-3'>
               <NavDropdown.Item href="/selfserviceportal">Self Service Portal</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Payment Methods
@@ -41,7 +41,7 @@ function Userbar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
+  );
 }
 
-export default Userbar
+export default Userbar;
