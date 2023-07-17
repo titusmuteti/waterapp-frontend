@@ -73,9 +73,10 @@ function AdminDashboard() {
                 <th className="table-header">Date Read</th>
                 <th className="table-header">Previous Reading</th>
                 <th className="table-header">Current Reading</th>
-                <th className="table-header">Read By</th>
+                <th className="table-header">Units Consumed</th>
                 <th className="table-header">Balance</th>
-                <th className="table-header">Payment Status</th>
+                <th className="table-header">Total Amount due</th>
+                <th className="table-header">Read By</th>
                 <th className="table-header">Date Paid</th>
                 <th className="table-header">Area</th>
                 <th className="table-header">Actions</th>
@@ -93,9 +94,10 @@ function AdminDashboard() {
                   <td>{item.date_read}</td>
                   <td>{item.previous_reading}</td>
                   <td>{item.current_reading}</td>
+                  <td>{item.current_reading - item.previous_reading}</td>
+                  <td className='balance'>{item.balance}</td>
+                  <td className='total'>{item.units_consumed * 3 + item.balance}</td>
                   <td>{item.employee.first_name} {item.employee.last_name}</td>
-                  <td>{item.balance}</td>
-                  <td>{item.payment_status}</td>
                   <td>{item.date_paid}</td>
                   <td>{item.employee.location}</td>
                   <td>
