@@ -28,7 +28,7 @@ function AdminDashboard() {
   const handleDelete = async (index) => {
     try {
       // Make the delete request to the backend API
-      await fetch(`https://makawasco-backend.onrender.com/clients/${index}`, {
+      await fetch(`https://makawasco-backend.onrender.com/bill/${index}`, {
         method: 'DELETE',
       });
       // Update the data state by filtering out the deleted record
@@ -93,11 +93,11 @@ function AdminDashboard() {
                   <td>{item.date_read}</td>
                   <td>{item.previous_reading}</td>
                   <td>{item.current_reading}</td>
-                  <td>{item.read_by}</td>
+                  <td>{item.employee.first_name} {item.employee.last_name}</td>
                   <td>{item.balance}</td>
                   <td>{item.payment_status}</td>
                   <td>{item.date_paid}</td>
-                  <td>{item.location}</td>
+                  <td>{item.employee.location}</td>
                   <td>
                     <div className="action-icons">
                       <button onClick={() => handleDelete(index)} className="btn btn-danger">
