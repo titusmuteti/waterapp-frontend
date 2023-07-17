@@ -68,14 +68,15 @@ function AdminDashboard() {
               <tr>
                 <th className="table-header">#</th>
                 <th className="table-header">Name</th>
-                <th className="table-header">Email</th>
+                {/* <th className="table-header">Email</th> */}
                 <th className="table-header">Phone Number</th>
-                <th className="table-header">Date Read</th>
+                <th className="table-header">Meter No.</th>
                 <th className="table-header">Previous Reading</th>
                 <th className="table-header">Current Reading</th>
                 <th className="table-header">Units Consumed</th>
                 <th className="table-header">Balance</th>
                 <th className="table-header">Total Amount due</th>
+                <th className="table-header">Date Read</th>
                 <th className="table-header">Read By</th>
                 <th className="table-header">Date Paid</th>
                 <th className="table-header">Area</th>
@@ -89,14 +90,15 @@ function AdminDashboard() {
                   <td style={{ width: '20%', whiteSpace: 'nowrap' }}>
                     {item.client.first_name} {item.client.last_name}
                   </td>
-                  <td>{item.client.email}</td>
+                  {/* <td>{item.client.email}</td> */}
                   <td>{item.client.phone_number}</td>
-                  <td>{item.date_read}</td>
+                  <td>{item.meter_no}</td>
                   <td>{item.previous_reading}</td>
                   <td>{item.current_reading}</td>
                   <td>{item.current_reading - item.previous_reading}</td>
                   <td className='balance'>{item.balance}</td>
-                  <td className='total'>{item.units_consumed * 3 + item.balance}</td>
+                  <td className='total'>{(item.current_reading - item.previous_reading) * 3 + item.balance}</td>
+                  <td>{item.date_read}</td>
                   <td>{item.employee.first_name} {item.employee.last_name}</td>
                   <td>{item.date_paid}</td>
                   <td>{item.employee.location}</td>
